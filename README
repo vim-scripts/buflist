@@ -1,0 +1,50 @@
+This is a mirror of http://www.vim.org/scripts/script.php?script_id=1011
+
+The buffer browser plugin provides you an easy way to switch from a buffer to another. The layout has been inspired on the taglist script.
+
+Press the <F4> key to toggle the buffer list on and off. Help can be displayed by pressing the 'h' key. 
+
+General keymaps:
+
+- <S-F3>/<S-F4> to decrease/increase window height by 1
+- <C-S-F3>/<C-S-F4> to decrease/increase window height by 5
+
+Usage when not in buffer list:
+
+- <F4> to open/access buffer list panel
+- \\0 to \\9 to mark window with number
+- \\p to mark window as preview window
+
+Usage when in buffer list:
+
+- h to toggle help
+- q to close buffer list (same as CTRL-W q)
+- p to preview file in preview window
+- d to delete currently selected buffer
+- u to update buffer list
+- x to toggle path display
+- s to toggle sorting by buffer number/name/extension
+- n/N to edit file in new window below/above <F4> 
+- <CR> to edit file in last window visited before <F4>
+- \\0 to \\9 to edit file in window marked 0 to 9
+- <F4> to go back to <F4> window
+- <S-F3> to decrease buffer list width by 1
+- <S-F4> to increase buffer list width by 1
+- <C-S-F3> to decrease buffer list width by 5
+- <C-S-F4> to increase buffer list width by 5
+
+Remark: the \ is in fact defined as <Leader>, it might thus change regarding your environment settings.
+
+Change log:
+
+From 1.6 to 1.7:
+
+- g:BufList_Hide set to 1 or 0 whether the buflist panel shall be respectively hidden or not once buffer is selected (<CR> key).
+- Copy buffer no longer erased when buffer is selected or when panel is updated.
+
+From 1.5 to 1.6:
+
+- buffer path display bug fix
+- nonumber set for buffer list (thanks to Ian)
+- <C-S-F3>/<C-S-F4> for increasing/decreasing window size
+
