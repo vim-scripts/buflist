@@ -1,9 +1,9 @@
 "
 "	File:    buflist.vim
-"	Author:  Fabien Bouleau (syrion AT freesbee DOT fr)
-"	Version: 1.6
+"	Author:  Fabien Bouleau (syrion AT tiscali DOT fr)
+"	Version: 1.7
 "
-"	Last Modified: August 16th, 2004
+"	Last Modified: March, 6th 2006
 "
 "	Usage:
 "
@@ -38,9 +38,13 @@
 "	Copy the script into your $VIM/vimfiles/plugin
 "
 
+if !exists("g:BufList_Hide")
+    let g:BufList_Hide=1
+endif
+
 autocmd! * __BufList__
 
-autocmd BufHidden,BufUnload __BufList__ call BufList_ClosePanel()
+autocmd BufHidden __BufList__ call BufList_ClosePanel()
 autocmd BufEnter __BufList__ call s:BufList_IamSoLonely()
 
 map <silent> <F4> :call BufList_Open()<CR>
@@ -68,6 +72,9 @@ endfunction
 
 function! BufList_Edit()
 	let name = s:BufList_SelectedName()
+    if exists("g:BufList_Hide") && g:BufList_Hide == 1
+        hide
+    endif
 	exec s:buflist_winedit . "wincmd w"
 	if name != ""
 		execute "edit " . name
@@ -118,8 +125,7 @@ endfunction
 function! BufList_Update()
 	let linenr = line(".")
 
-	execute "0"
-	norm VGD
+    %delete _
 	
 	let ssort = "num"
 	let spath = "off"
@@ -384,8 +390,8 @@ function! s:BufList_CreatePanel()
 endfunction
 
 function! s:BufList_SelectedNr()
-	exec "norm 0\"ayw"
-	let val = @a + 0
+	let line = getline(".")
+    let val  = strpart(line, 0, match(getline("."), ":")) + 0
 	return val
 endfunction
 
